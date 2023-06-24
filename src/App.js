@@ -18,6 +18,8 @@ function App() {
   const loginHandler = (email, password) => {
     // We should of course check email and password
     // But it's just a dummy/ demo anyways
+    //the params for "setItem" function are a key-value pait
+    //"1" signifies logged in here, "0" would be loggged out in this example
     localStorage.setItem("isLoggedIn", "1");
     setIsLoggedIn(true);
   };

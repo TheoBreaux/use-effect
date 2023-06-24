@@ -12,9 +12,25 @@ const Login = (props) => {
   const [formIsValid, setFormIsValid] = useState(false);
 
   useEffect(() => {
-    setFormIsValid(
-      enteredEmail.includes("@") && enteredPassword.trim().length > 6
-    );
+    console.log("EFFECT IS RUNNING");
+    return () => {
+      console.log("EFFECT CLEANU");
+    };
+  }, [enteredPassword]);
+
+  useEffect(() => {
+    const identifier = setTimeout(() => {
+      console.log("CHECKING FORM VALIDITY!");
+      setFormIsValid(
+        enteredEmail.includes("@") && enteredPassword.trim().length > 6
+      );
+    }, 500);
+
+    //clean up before useEffect runs again
+    return () => {
+      console.log("CLEAN UP HERE!");
+      clearTimeout(identifier);
+    };
   }, [enteredEmail, enteredPassword]);
 
   const emailChangeHandler = (event) => {
@@ -44,8 +60,7 @@ const Login = (props) => {
         <div
           className={`${classes.control} ${
             emailIsValid === false ? classes.invalid : ""
-          }`}
-        >
+          }`}>
           <label htmlFor="email">E-Mail</label>
           <input
             type="email"
@@ -58,8 +73,7 @@ const Login = (props) => {
         <div
           className={`${classes.control} ${
             passwordIsValid === false ? classes.invalid : ""
-          }`}
-        >
+          }`}>
           <label htmlFor="password">Password</label>
           <input
             type="password"
