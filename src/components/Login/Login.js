@@ -14,7 +14,7 @@ const Login = (props) => {
   useEffect(() => {
     console.log("EFFECT IS RUNNING");
     return () => {
-      console.log("EFFECT CLEANU");
+      console.log("EFFECT CLEANUP");
     };
   }, [enteredPassword]);
 
